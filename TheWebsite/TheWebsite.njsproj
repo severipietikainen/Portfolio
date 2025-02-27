@@ -30,6 +30,7 @@
   <ItemGroup>
     <Content Include="Public\about.html" />
     <Content Include="Public\contact.html" />
+    <Content Include="Public\css\style.css" />
     <Content Include="Public\home.html" />
     <Content Include="Public\projects.html" />
     <Content Include="server.js" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Public\" />
+    <Folder Include="Public\css\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
