@@ -30,7 +30,7 @@
   <ItemGroup>
     <Content Include="Public\about.html" />
     <Content Include="Public\contact.html" />
-    <Content Include="Public\css\style.css" />
+    <Content Include="Public\css\styles.css" />
     <Content Include="Public\home.html" />
     <Content Include="Public\projects.html" />
     <Content Include="server.js" />
