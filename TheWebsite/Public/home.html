@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+</head>
+<body>
+    <h1>Welcome to My Portfolio</h1>
+    <p>Click the button below to get a message from the server:</p>
+    <button id="getMessageBtn">Get Message</button>
+    <p id="message"></p>
+
+    <script>
+        document.getElementById("getMessageBtn").addEventListener("click", function () {
+            fetch('/message')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("message").innerText = data;
+                });
+        });
+    </script>
+
+
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button id="getPersonalizedMessageBtn">Get Personalized Message</button>
+    <p id="personalMessage"></p>
+
+    <script>
+        document.getElementById("getPersonalizedMessageBtn").addEventListener("click", function () {
+            let name = document.getElementById("nameInput").value;
+            fetch(`/greet?name=${encodeURIComponent(name)}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("personalMessage").innerText = data;
+                });
+        });
+    </script>
+
+    <button id="getInfoBtn">Get Portfolio Info</button>
+<pre id="info"></pre>
+
+    <script>
+        document.getElementById("getInfoBtn").addEventListener("click", function () {
+            fetch('/api/info')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("info").innerText = JSON.stringify(data, null, 2);
+                });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+    "name": "the-website",
+    "version": "0.0.0",
+    "description": "TheWebsite",
+    "main": "server.js",
+    "author": {
+        "name": ""
+    },
+    "devDependencies": {
+        "eslint": "^8.21.0"
+    },
+    "eslintConfig": {},
+    "dependencies": {
+        "express": "^4.21.2"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"<h1>Welcome</h1>
+    }
+}
