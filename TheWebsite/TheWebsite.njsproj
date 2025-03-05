@@ -28,6 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="home.html" />
     <Content Include="Public\about.html" />
     <Content Include="Public\contact.html" />
     <Content Include="Public\css\styles.css" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <Folder Include="Public\" />
     <Folder Include="Public\css\" />
+    <Folder Include="Public\js\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
