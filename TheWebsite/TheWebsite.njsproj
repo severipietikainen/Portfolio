@@ -34,6 +34,7 @@
     <Content Include="Public\css\styles.css" />
     <Content Include="Public\home.html" />
     <Content Include="Public\projects.html" />
+    <Content Include="Public\tailwind.css" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
