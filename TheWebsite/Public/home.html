@@ -3,30 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Severi Pietikainen</title>
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/tailwind-output.css" rel="stylesheet">
+    <title>Severi Pietikäinen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/37a1ecb3a6.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <header class="bg-blue-600 text-white p-4">
-        <nav class="container mx-auto flex justify-between">
-            <h1 class="text-xl font-bold">My Portfolio</h1>
-            <ul class="flex space-x-4">
-                <li><a href="home.html" class="hover:underline">Home</a></li>
-                <li><a href="about.html" class="hover:underline">About</a></li>
-                <li><a href="projects.html" class="hover:underline">Projects</a></li>
-                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+<body class="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-gray-100" style="font-family: 'Source Code Pro', monospace;">
+    <!-- NavBar -->
+    <header class="sticky top-4 z-50 bg-gray-600 bg-opacity-50 backdrop-blur-lg p-7 shadow-lg w-[25%] max-w-3xl mx-auto mt-4 rounded-full">
+        <nav class="text-center">
+            <ul class="flex justify-center space-x-6 text-lg font-semibold" style="font-family: 'Inter', sans-serif;">
+                <li><a href="#home" class="hover:text-blue-400">Home</a></li>
+                <li><a href="#about" class="hover:text-blue-400">About</a></li>
+                <li><a href="#projects" class="hover:text-blue-400">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container mx-auto mt-10 text-center">
-        <h1 class="text-4xl font-bold text-blue-700">Welcome to My Portfolio</h1>
-        <p class="text-gray-600 mt-4">Building my skills with HTML, CSS, JavaScript, and Node.js</p>
-    </div>
+    <!-- Me -->
+    <section class="min-h-[80vh] flex justify-center items-center px-8 max-w-5xl mx-auto mt-0 rounded-lg">
+        <div class="text-left">
+            <h1 class="text-6xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">Severi Pietikäinen</h1>
+            <p class="text-xl text-gray-400 mt-2">Software Developer</p>
+            <p class="text-xl text-gray-400">Game Developer</p>
 
-    <footer class="bg-blue-600 text-white text-center p-4 mt-10">
-        &copy; 2025 My Portfolio
-    </footer>
+            <!-- Location -->
+            <div class="flex items-center space-x-2 text-lg font-semibold text-gray-400 mt-4" style="font-family: 'Source Code Pro', monospace;">
+                <i class="fa-solid fa-location-dot"></i>
+                <p class="text-gray-400 mt-0">Helsinki, Finland</p>
+            </div>
+
+            <!-- Socials -->
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="mailto:Severi.pietikainen1@gmail.com" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="bg-transparent py-10 mt-8">
+        <div class="max-w-4xl mx-auto p-6">
+            <h2 class="text-4xl font-extrabold text-white mb-8" style="font-family: 'Inter', sans-serif;">My Projects</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project One</h3>
+                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project1</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Two</h3>
+                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project2</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Three</h3>
+                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project3</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Four</h3>
+                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project4</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
