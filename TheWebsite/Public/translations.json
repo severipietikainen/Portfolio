@@ -1,0 +1,30 @@
+{
+    "en": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact",
+        "developer": "Software Developer",
+        "gameDeveloper": "Game Developer",
+        "location": "Helsinki, Finland",
+        "myProjects": "My Projects",
+        "projectOne": "Project One",
+        "projectTwo": "Project Two",
+        "projectThree": "Project Three",
+        "projectFour": "Project Four"
+    },
+    "fi": {
+        "home": "Etusivu",
+        "about": "Minusta",
+        "projects": "Projektini",
+        "contact": "Yhteystiedot",
+        "developer": "Ohjelmistokehittäjä",
+        "gameDeveloper": "Pelikehittäjä",
+        "location": "Helsinki, Suomi",
+        "myProjects": "Minun projektini",
+        "projectOne": "Projekti Yksi",
+        "projectTwo": "Projekti Kaksi",
+        "projectThree": "Projekti Kolme",
+        "projectFour": "Projekti Neljä"
+    }
+}

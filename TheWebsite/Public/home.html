@@ -6,38 +6,49 @@
     <title>Severi Pietikäinen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/37a1ecb3a6.js" crossorigin="anonymous"></script>
+    <script src="js/translations.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-gray-100" style="font-family: 'Source Code Pro', monospace;">
     <!-- NavBar -->
-    <header class="sticky top-4 z-50 bg-gray-600 bg-opacity-50 backdrop-blur-lg p-7 shadow-lg w-[25%] max-w-3xl mx-auto mt-4 rounded-full">
-        <nav class="text-center">
-            <ul class="flex justify-center space-x-6 text-lg font-semibold" style="font-family: 'Inter', sans-serif;">
-                <li><a href="#home" class="hover:text-blue-400">Home</a></li>
-                <li><a href="#about" class="hover:text-blue-400">About</a></li>
-                <li><a href="#projects" class="hover:text-blue-400">Projects</a></li>
-                <li><a href="#contact" class="hover:text-blue-400">Contact</a></li>
+    <header class="sticky top-4 z-50 bg-gray-600 bg-opacity-50 backdrop-blur-lg p-4 shadow-lg w-[30%] max-w-3xl mx-auto mt-4 rounded-lg">
+        <nav class="flex justify-center items-center">
+            <!-- Nav -->
+            <ul class="flex space-x-10 text-lg font-semibold">
+                <li><a href="#home" class="hover:text-blue-400" data-i18n="home">Home</a></li>
+                <li><a href="#about" class="hover:text-blue-400" data-i18n="about">About</a></li>
+                <li><a href="#projects" class="hover:text-blue-400" data-i18n="projects">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-400" data-i18n="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Lang -->
+    <div class="fixed top-4 right-4 flex space-x-2 z-50">
+        <button onclick="setLanguage('fi')" class="px-3 py-1 rounded-lg bg-gray-700 text-white hover:bg-blue-500">🇫🇮 FI</button>
+        <button onclick="setLanguage('en')" class="px-3 py-1 rounded-lg bg-gray-700 text-white hover:bg-blue-500">🇬🇧 EN</button>
+    </div>
 
     <!-- Me -->
     <section class="min-h-[80vh] flex justify-center items-center px-8 max-w-5xl mx-auto mt-0 rounded-lg">
         <div class="text-left">
             <h1 class="text-6xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">Severi Pietikäinen</h1>
-            <p class="text-xl text-gray-400 mt-2">Software Developer</p>
-            <p class="text-xl text-gray-400">Game Developer</p>
+            <p class="text-xl text-gray-400 mt-2" data-i18n="developer">Software Developer</p>
+            <p class="text-xl text-gray-400" data-i18n="gameDeveloper">Game Developer</p>
 
             <!-- Location -->
             <div class="flex items-center space-x-2 text-lg font-semibold text-gray-400 mt-4" style="font-family: 'Source Code Pro', monospace;">
                 <i class="fa-solid fa-location-dot"></i>
-                <p class="text-gray-400 mt-0">Helsinki, Finland</p>
+                <p class="text-gray-400 mt-0" data-i18n="Location">Helsinki, Finland</p>
             </div>
 
             <!-- Socials -->
             <div class="flex justify-center space-x-6 mt-6">
-                <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
-                    <i class="fab fa-github text-xl"></i>
+                <a href="https://github.com/severipietikainen" target="_blank" rel="noopener noreferrer"
+                class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" 
+                style="font-family: 'Source Code Pro', monospace;">
+                <i class="fab fa-github text-xl"></i>
+             </a>
                 </a>
                 <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
                     <i class="fab fa-linkedin text-xl"></i>
@@ -55,32 +66,26 @@
     <!-- Projects -->
     <section id="projects" class="bg-transparent py-10 mt-8">
         <div class="max-w-4xl mx-auto p-6">
-            <h2 class="text-4xl font-extrabold text-white mb-8" style="font-family: 'Inter', sans-serif;">My Projects</h2>
+            <h2 class="text-4xl font-extrabold text-white mb-8" data-i18n="myProjects">My Projects</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                <!-- Card 1 -->
                 <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project One</h3>
-                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project1</p>
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectOne">Project One</h3>
                 </div>
-                <!-- Card 2 -->
                 <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Two</h3>
-                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project2</p>
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectTwo">Project Two</h3>
                 </div>
-                <!-- Card 3 -->
                 <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Three</h3>
-                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project3</p>
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectThree">Project Three</h3>
                 </div>
-                <!-- Card 4 -->
                 <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" style="font-family: 'Inter', sans-serif;">Project Four</h3>
-                    <p class="text-gray-300" style="font-family: 'Source Code Pro', monospace;">Project4</p>
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectFour">Project Four</h3>
                 </div>
             </div>
         </div>
     </section>
-
+    <script>
+        console.log("translations.js loaded");
+    </script>
 </body>
 </html>
