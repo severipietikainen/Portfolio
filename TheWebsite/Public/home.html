@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-gray-100" style="font-family: 'Source Code Pro', monospace;">
     <!-- NavBar -->
-    <header class="sticky top-4 z-50 bg-gray-600 bg-opacity-50 backdrop-blur-lg p-4 shadow-lg w-[100%] max-w-3xl mx-auto mt-4 rounded-lg">
+    <header class="sticky top-4 z-50 bg-gray-700 bg-opacity-50 backdrop-blur-lg p-4 shadow-lg w-[100%] max-w-2xl mx-auto mt-4 rounded-lg border border-gray-600">
         <nav class="flex justify-center items-center">
             <!-- Nav -->
             <ul class="flex space-x-10 text-lg font-semibold">
@@ -25,12 +25,12 @@
 
     <!-- Lang -->
     <div class="flex justify-center sm:justify-end items-center space-x-4 mt-4 sm:mt-0 sm:flex-row sm:absolute sm:top-4 sm:right-4 z-50">
-        <button onclick="setLanguage('fi')" class="px-3 py-1 rounded-lg bg-gray-700 text-white hover:bg-blue-500">🇫🇮 FI</button>
-        <button onclick="setLanguage('en')" class="px-3 py-1 rounded-lg bg-gray-700 text-white hover:bg-blue-500">🇬🇧 EN</button>
+        <button onclick="setLanguage('fi')" class="px-3 py-1 rounded-lg shadow-lg bg-gray-700 text-white hover:bg-blue-500 border border-gray-600">🇫🇮 FI</button>
+        <button onclick="setLanguage('en')" class="px-3 py-1 rounded-lg shadow-lg bg-gray-700 text-white hover:bg-blue-500 border border-gray-600">🇬🇧 EN</button>
     </div>
 
     <!-- Me -->
-    <section class="min-h-[80vh] flex justify-center items-center px-8 max-w-5xl mx-auto mt-0 rounded-lg">
+    <section class="min-h-[60vh] flex justify-center items-center px-8 max-w-5xl mx-auto mt-0 rounded-lg">
         <div class="text-left">
             <h1 class="text-6xl font-extrabold text-white" style="font-family: 'Inter', sans-serif;">Severi Pietikäinen</h1>
             <p class="text-xl text-gray-400 mt-2" data-i18n="developer">Software Developer</p>
@@ -62,24 +62,200 @@
             </div>
         </div>
     </section>
+    
+    <section id="tech-stack" class="bg-gray-750 py-10 mt-8 rounded-lg shadow-lg max-w-4xl mx-auto px-6">
+        <h2 class="text-4xl font-extrabold text-white text-left mb-6">Tech Stack</h2>
+    
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- C++ -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">C++</p>
+            </div>
+    
+            <!-- C# -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">C#</p>
+            </div>
+    
+            <!-- JavaScript -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">JavaScript</p>
+            </div>
+    
+            <!-- Unity -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">Unity</p>
+            </div>
+    
+            <!-- Unreal Engine 5 -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine 5" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">Unreal Engine 5</p>
+            </div>
+    
+            <!-- React -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">React</p>
+            </div>
+    
+            <!-- Node.js -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">Node.js</p>
+            </div>
+    
+            <!-- Tailwind CSS -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">Tailwind CSS</p>
+            </div>
+    
+            <!-- HTML -->
+            <div class="flex items-center space-x-4 p-3 rounded-lg border border-gray-600 shadow-md 
+                        transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-10 h-10">
+                <p class="text-lg text-gray-300 font-medium">HTML5</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Projects -->
     <section id="projects" class="bg-transparent py-10 mt-8">
-        <div class="max-w-4xl mx-auto p-6">
+        <div class="max-w-5xl mx-auto p-6">
             <h2 class="text-4xl font-extrabold text-white mb-8" data-i18n="myProjects">My Projects</h2>
-            
+    
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectOne">Project One</h3>
+                <!-- WalkTheDogOnPaper Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/WTD on Paper logo_lorez.png" alt="WalkTheDogOnPaper" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">WalkTheDogOnPaper</h3>
+                            <a href="https://walkthedog.info/" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">A simulation game that lets you guide a paper dog on a hand-drawn adventure.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">Unity</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">C#</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectTwo">Project Two</h3>
+    
+                <!-- Helpotus Lähelläsi Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/pip-700.jpg" alt="Helpotus Lähelläsi" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">Helpotus Lähelläsi</h3>
+                            <a href="https://helpotus-lahellasi.github.io/" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">Interactive web application for finding the nearest toilet.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">React</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectThree">Project Three</h3>
+    
+                <!-- Scales of Aether Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/scales_of_aether_image.png" alt="Scales of Aether" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">Scales of Aether</h3>
+                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">A 3D platformer, puzzle, and adventure game built with C++ and Unreal Engine 5.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">C++</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">Unreal Engine 5</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-700 p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-2xl font-bold mb-2" data-i18n="projectFour">Project Four</h3>
+    
+                <!-- ChessbotAI Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/chessbotai_image.png" alt="ChessbotAI" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">ChessbotAI</h3>
+                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">A chess AI that you can play against in the console, utilizing hashtables, decision trees, and the Minimax algorithm.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">C++</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- UnderTheVeilOfDarkness Unity C# Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/under_the_veil_of_darkness_logo.png" alt="UnderTheVeilOfDarkness" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">UnderTheVeilOfDarkness</h3>
+                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">A Unity-based C# project with a dark fantasy theme, combining exploration and puzzle-solving elements.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">Unity</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">C#</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- This Website Project Card -->
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
+                    <div class="h-56">
+                        <img src="assets/images/website_image.png" alt="This Website" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex flex-col">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-white">This Website</h3>
+                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                                Discover
+                            </a>
+                        </div>
+                        <p class="text-gray-300 text-sm mt-3">This portfolio website showcases my projects, skills, and experience as a developer.</p>
+                        <div class="flex gap-2 mt-4">
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">HTML</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">CSS</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">JavaScript</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
