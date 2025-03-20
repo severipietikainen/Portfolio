@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Severi Pietikäinen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/37a1ecb3a6.js" crossorigin="anonymous"></script>
     <script src="js/translations.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-gray-100" style="font-family: 'Source Code Pro', monospace;">
+<body id="home" class="bg-gradient-to-b from-gray-600 to-gray-900 min-h-screen text-gray-100" style="font-family: 'Source Code Pro', monospace;">
     <!-- NavBar -->
     <header class="sticky top-4 z-50 bg-gray-700 bg-opacity-50 backdrop-blur-lg p-4 shadow-lg w-[100%] max-w-2xl mx-auto mt-4 rounded-lg border border-gray-600">
         <nav class="flex justify-center items-center">
@@ -18,7 +20,7 @@
                 <li><a href="#home" class="hover:text-blue-400" data-i18n="home">Home</a></li>
                 <li><a href="#about" class="hover:text-blue-400" data-i18n="about">About</a></li>
                 <li><a href="#projects" class="hover:text-blue-400" data-i18n="projects">Projects</a></li>
-                <li><a href="#contact" class="hover:text-blue-400" data-i18n="contact">Contact</a></li>
+                <li><a href="mailto:Severi.pietikainen1@gmail.com" target="_blank" class="hover:text-blue-400" data-i18n="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -56,8 +58,9 @@
                 <a href="" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
                     <i class="fab fa-twitter text-xl"></i>
                 </a>
-                <a href="mailto:Severi.pietikainen1@gmail.com" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition" style="font-family: 'Source Code Pro', monospace;">
+                <a href="mailto:Severi.pietikainen1@gmail.com" target="_blank" class="bg-gray-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition">
                     <i class="fas fa-envelope text-xl"></i>
+                </a>
                 </a>
             </div>
         </div>
@@ -181,12 +184,12 @@
                 <!-- Scales of Aether Project Card -->
                 <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
                     <div class="h-56">
-                        <img src="assets/images/scales_of_aether_image.png" alt="Scales of Aether" class="w-full h-full object-cover">
+                        <img src="assets/images/ScalesOfAtherStrech.png" alt="Scales of Aether" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 flex flex-col">
                         <div class="flex justify-between items-center">
                             <h3 class="text-2xl font-bold text-white">Scales of Aether</h3>
-                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                            <a href="https://scalesofaether.com/" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
                                 Discover
                             </a>
                         </div>
@@ -201,12 +204,12 @@
                 <!-- ChessbotAI Project Card -->
                 <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
                     <div class="h-56">
-                        <img src="assets/images/chessbotai_image.png" alt="ChessbotAI" class="w-full h-full object-cover">
+                        <img src="assets/images/ShakkiBot.png" alt="ChessbotAI" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 flex flex-col">
                         <div class="flex justify-between items-center">
                             <h3 class="text-2xl font-bold text-white">ChessbotAI</h3>
-                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                            <a href="https://github.com/Mulju/Shakkibotti" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
                                 Discover
                             </a>
                         </div>
@@ -220,12 +223,12 @@
                 <!-- UnderTheVeilOfDarkness Unity C# Project Card -->
                 <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
                     <div class="h-56">
-                        <img src="assets/images/under_the_veil_of_darkness_logo.png" alt="UnderTheVeilOfDarkness" class="w-full h-full object-cover">
+                        <img src="assets/images/UnderTheVeilOfDarkness.jpg" alt="UnderTheVeilOfDarkness" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 flex flex-col">
                         <div class="flex justify-between items-center">
                             <h3 class="text-2xl font-bold text-white">UnderTheVeilOfDarkness</h3>
-                            <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
+                            <a href="https://nitro-team-2.itch.io/under-the-veil-of-darkness" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
                                 Discover
                             </a>
                         </div>
@@ -240,11 +243,11 @@
                 <!-- This Website Project Card -->
                 <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl w-full">
                     <div class="h-56">
-                        <img src="assets/images/website_image.png" alt="This Website" class="w-full h-full object-cover">
+                        <img src="assets/images/PortfolioWeb.png" alt="This Website" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 flex flex-col">
                         <div class="flex justify-between items-center">
-                            <h3 class="text-2xl font-bold text-white">This Website</h3>
+                            <h3 class="text-2xl font-bold text-white">Portfolio Website</h3>
                             <a href="#" target="_blank" class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-semibold hover:bg-blue-700 transition">
                                 Discover
                             </a>
@@ -254,14 +257,58 @@
                             <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">HTML</span>
                             <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">CSS</span>
                             <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">Tailwindcss</span>
+                            <span class="px-3 py-1 bg-gray-600 text-gray-200 text-xs font-semibold rounded-full">React</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script>
-        console.log("translations.js loaded");
-    </script>
+
+    <div id="about" class="flex flex-col bg-gray-800 p-4 rounded-xl shadow-lg max-w-3xl mx-auto border border-gray-600">
+        <!-- Toggle Buttons -->
+        <div class="flex justify-center">
+            <button id="showResume" class="flex-1 text-center py-3 text-lg font-bold transition-colors duration-300 rounded-full bg-gray-900 text-white border border-gray-600 shadow-md focus:outline-none">
+                Resume
+            </button>
+            <button id="showExperience" class="flex-1 text-center py-3 text-lg font-bold transition-colors duration-300 rounded-full bg-gray-600 text-gray-300 border border-gray-600 shadow-md focus:outline-none">
+                Experience
+            </button>
+        </div>
+        
+        <!-- Side-by-Side Content -->
+        <div class="flex gap-5 mt-4 max-w-full">
+            <!-- Resume Section -->
+            <div id="resumeContent" class="flex-1 p-4 bg-gray-700 rounded-lg shadow-md max-w-full">
+                <h2 class="text-xl font-bold mb-2 text-white">My Resume</h2>
+                <p class="text-gray-300 mb-4">You can download or view my resume below:</p>
+    
+                <!-- PDF View (inline) -->
+                <div id="pdf-viewer" class="mb-4">
+                    <canvas id="pdf-canvas" class="w-full"></canvas>
+                </div>
+    
+                <!-- Download Button -->
+                <a href="assets/documents/CV_enf.pdf" download class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition">
+                    Download Resume
+                </a>
+            </div>
+    
+            <!-- Experience Section -->
+            <div id="experienceContent" class="flex-1 p-4 bg-gray-700 rounded-lg shadow-md max-w-full hidden">
+                <h2 class="text-xl font-bold mb-2 text-white">Work Experience</h2>
+                <ul class="list-disc pl-5 text-gray-300">
+                    <li><strong>Job Title 1</strong> - Company Name (Year - Year)</li>
+                    <li><strong>Job Title 2</strong> - Company Name (Year - Year)</li>
+                    <li><strong>Job Title 3</strong> - Company Name (Year - Year)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/toggleResumeExperience.js"></script>
+
+    
 </body>
 </html>
