@@ -33,7 +33,7 @@
          const context = canvas.getContext('2d');
          
          // Adjust the scale here (1.5 for example)
-         const scale = 1.5;  // You can increase or decrease this value to fit the text size you want
+         const scale = 2.5;  // You can increase or decrease this value to fit the text size you want
          const viewport = page.getViewport({ scale: scale });
          
          // Set the canvas size to the scaled PDF size
