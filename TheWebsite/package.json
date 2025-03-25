@@ -2,7 +2,6 @@
     "name": "the-website",
     "version": "0.0.0",
     "description": "TheWebsite",
-    "main": "server.js",
     "author": {
         "name": ""
     },
@@ -14,11 +13,8 @@
         "tailwindcss": "^3.4.1"
     },
     "eslintConfig": {},
-    "dependencies": {
-        "express": "^4.21.2"
-    },
     "scripts": {
-        "start": "node server.js",
-        "dev": "concurrently \"npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css --watch\" \"nodemon server.js\""
+        "build": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css",
+        "dev": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css --watch"
     }
 }
