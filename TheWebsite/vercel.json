@@ -1,16 +1,9 @@
 {
+    "version": 2,
     "builds": [
       {
-        "src": "public/css/tailwind.css",
+        "src": "public/**/*",
         "use": "@vercel/static"
-      },
-      {
-        "src": "public/css/tailwind-output.css",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "package.json",
-        "use": "@vercel/node"
       }
     ],
     "routes": [
