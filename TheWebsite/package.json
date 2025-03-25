@@ -14,7 +14,7 @@
     },
     "eslintConfig": {},
     "scripts": {
-        "build": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css",
+        "build": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css --minify",
         "dev": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind-output.css --watch",
         "start": "vercel dev"
     }
