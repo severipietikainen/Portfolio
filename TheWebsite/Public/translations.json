@@ -11,7 +11,18 @@
         "projectOne": "Project One",
         "projectTwo": "Project Two",
         "projectThree": "Project Three",
-        "projectFour": "Project Four"
+        "projectFour": "Project Four",
+        "tech-stack": "Tech Stack",
+        "workExperience": "Work Experience",
+        "resumeText": "You can download or view my resume below:",
+        "myResume": "My Resume",
+        "projectDescription": "A Unity-based C# project with a dark fantasy theme, combining exploration and puzzle-solving elements.",
+        "chessAI": "A chess AI that you can play against in the console, utilizing hashtables, decision trees, and the Minimax algorithm.",
+        "platformerGame": "A 3D platformer, puzzle, and adventure game built with C++ and Unreal Engine 5.",
+        "toiletApp": "Interactive web application for finding the nearest toilet.",
+        "paperDogGame": "A simulation game that lets you guide a paper dog on a hand-drawn adventure.",
+        "porfoliodesc":"This portfolio website showcases my projects, skills, and experience as a developer.",
+        "portfolio":"Portfolio Website"
     },
     "fi": {
         "home": "Etusivu",
@@ -21,10 +32,21 @@
         "developer": "Ohjelmistokehittäjä",
         "gameDeveloper": "Pelikehittäjä",
         "location": "Helsinki, Suomi",
-        "myProjects": "Minun projektini",
+        "myProjects": "Projektini",
         "projectOne": "Projekti Yksi",
         "projectTwo": "Projekti Kaksi",
         "projectThree": "Projekti Kolme",
-        "projectFour": "Projekti Neljä"
+        "projectFour": "Projekti Neljä",
+        "tech-stack": "Työkalut",
+        "workExperience": "Työkokemus",
+        "resumeText": "Voit ladata tai katsoa ansioluetteloni alta:",
+        "myResume": "CV",
+        "projectDescription": "Unity C#-projekti. Fps peli, jossa pelaajan täytyy valita oma pelityylisä ja kilpailla saavuttaakseen parhaan suoritusajan.",
+        "chessAI": "Shakkitekoäly, jota voit pelata konsolissa, käyttäen hashtableja, päätöspuita ja Minimax-algoritmia.",
+        "platformerGame": "3D-seikkailu ja pulmapeli, joka on rakennettu C++:lla ja Unreal Engine 5:llä.",
+        "toiletApp": "Interaktiivinen verkkosovellus lähimmän wc:n löytämiseen.",
+        "paperDogGame": "Unity C#-projekti. 2D rampage peli mobiilille, jossa pelaaja yrittää kontrolloida koiria saavuttaakseen eniten pisteitä eri kartoissa.",
+        "porfoliodesc": "Tämä portfoliosivusto esittelee projektini, taitoni ja kokemukseni ohjelmistokehittäjänä.",
+        "portfolio":"Portfoliosivu"
     }
 }
