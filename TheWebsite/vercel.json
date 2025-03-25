@@ -1,5 +1,22 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/public/$1" }
+    "builds": [
+      {
+        "src": "public/css/tailwind.css",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "public/css/tailwind-output.css",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+      }
     ]
   }
