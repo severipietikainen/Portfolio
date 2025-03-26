@@ -77,6 +77,7 @@ function loadPDF(url) {
 }
 
 // Function to set language and update the PDF URL
+// Function to set language and update the PDF URL and download link
 function setLanguage(lang) {
     fetch('translations.json')
         .then(response => response.json())
@@ -90,14 +91,18 @@ function setLanguage(lang) {
                 }
             });
 
-            // Set the PDF URL based on the selected language
-            currentPDF = pdfPaths[lang] || pdfPaths.en;  // Default to English if the language is not found
+            // Set the English or Finnish PDF URL
+            currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
+
+            // Update the download link to the correct PDF based on the language
+            document.querySelector("#resumeContent a").href = currentPDF;
 
             // Reload the PDF after updating the URL
             loadPDF(currentPDF);
         })
         .catch(error => console.error('Error loading translations:', error));
 }
+
 
 // Language toggle buttons
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
