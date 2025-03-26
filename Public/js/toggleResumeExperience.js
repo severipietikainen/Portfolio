@@ -1,3 +1,6 @@
+let currentPDF = 'assets/documents/CV_enf.pdf';
+let resumeVisible = true;
+
 const resumeButton = document.getElementById('showResume');
 const experienceButton = document.getElementById('showExperience');
 const resumeContent = document.getElementById('resumeContent');
@@ -5,10 +8,7 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
-let currentPDF = 'assets/documents/CV_enf.pdf';
-let resumeVisible = true;
-
-// Function to toggle between resume and experience content
+// Toggle between Resume and Experience content
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
     activeButton.classList.remove('bg-gray-600', 'text-gray-300');
     activeButton.classList.add('bg-gray-900', 'text-white');
@@ -20,25 +20,15 @@ function toggleContent(activeButton, inactiveButton, activeContent, inactiveCont
 
     if (activeContent === resumeContent) {
         resumeVisible = true;
-        loadPDF(currentPDF); 
+        loadPDF(currentPDF);  // Reload the PDF when switching to resume
     } else {
         resumeVisible = false;
     }
 }
 
-// Event listeners for buttons
-resumeButton.addEventListener('click', function () {
-    toggleContent(resumeButton, experienceButton, resumeContent, experienceContent);
-});
-
-experienceButton.addEventListener('click', function () {
-    toggleContent(experienceButton, resumeButton, experienceContent, resumeContent);
-});
-
-// Function to load and render the PDF
+// Load and render the PDF
 function loadPDF(url) {
-    // Clear previous rendering on the canvas
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);  // Clear the canvas before rendering the new PDF
 
     pdfjsLib.getDocument(url).promise
         .then(pdf => pdf.getPage(1))
@@ -54,16 +44,14 @@ function loadPDF(url) {
         .catch(error => console.error("Error loading PDF:", error));
 }
 
-// Initially hide the canvas and load PDF when resume section is clicked
-pdfCanvas.style.display = "none"; // Hide the canvas initially
-loadPDF(currentPDF); // Load the PDF on page load
-
-// Function to handle language change
+// Handle language change
 function setLanguage(lang) {
+    // Clear the canvas immediately
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
-            // Update translated content
             document.querySelectorAll("[data-i18n]").forEach(element => {
                 const key = element.getAttribute("data-i18n");
                 if (data[lang] && data[lang][key]) {
@@ -71,29 +59,38 @@ function setLanguage(lang) {
                 }
             });
 
-            // Update the current PDF path based on the selected language
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Add a delay before reloading the PDF to ensure content updates are completed
+            // Reload the PDF only if the resume section is visible
             setTimeout(() => {
                 if (resumeVisible) {
-                    loadPDF(currentPDF);  // Reload the PDF for the selected language
+                    loadPDF(currentPDF);
                 }
-            }, 500);  // Delay by 500ms
-        });
+            }, 100);  // Delay to ensure content is updated before reloading the PDF
+        })
+        .catch(error => console.error('Error loading translations:', error));
 }
 
-// Event listeners for language buttons
+// Event listeners for toggling content visibility
+resumeButton.addEventListener('click', function () {
+    toggleContent(resumeButton, experienceButton, resumeContent, experienceContent);
+});
+
+experienceButton.addEventListener('click', function () {
+    toggleContent(experienceButton, resumeButton, experienceContent, resumeContent);
+});
+
+// Event listeners for language change
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
 document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
 
-// Wait for the page to fully load before showing the canvas to prevent any gray-out or flipping issues
+// Wait for the page to load before showing the canvas
 window.addEventListener('load', function () {
     setTimeout(() => {
         if (resumeVisible) {
-            pdfCanvas.style.display = "block"; // Show the canvas after the page is fully loaded
-            loadPDF(currentPDF); // Reload the PDF to ensure proper rendering
+            pdfCanvas.style.display = "block";  // Show the canvas after the page is fully loaded
+            loadPDF(currentPDF);  // Reload the PDF to ensure proper rendering
         }
-    }, 500); // Delay by 500ms
+    }, 500);  // Delay by 500ms
 });
