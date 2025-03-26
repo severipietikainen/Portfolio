@@ -7,8 +7,9 @@ const pdfContext = pdfCanvas.getContext('2d');
 
 // Initial PDF URL
 let currentPDF = 'assets/documents/CV_enf.pdf';
+let pdfLoaded = false;  // Track PDF loading status
 
-// Toggle between the Resume and Experience sections
+// Function to toggle between Resume and Experience sections
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
     activeButton.classList.remove('bg-gray-600', 'text-gray-300');
     activeButton.classList.add('bg-gray-900', 'text-white');
@@ -45,5 +46,45 @@ function loadPDF(url) {
         .catch(error => console.error("Error loading PDF:", error));
 }
 
-// Initial load of the PDF
-loadPDF(currentPDF);
+// Set the language and update translations and PDF URL
+function setLanguage(lang) {
+    // Fetch translations and update the text
+    fetch('translations.json')
+        .then(response => response.json())
+        .then(data => {
+            const translations = data;
+            document.querySelectorAll("[data-i18n]").forEach(element => {
+                const key = element.getAttribute("data-i18n");
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Set the PDF URL based on the selected language
+            currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
+            document.querySelector("#resumeContent a").href = currentPDF;
+
+            // Only reload PDF if it's not already loaded
+            if (!pdfLoaded) {
+                // Add a delay before reloading the PDF to ensure proper rendering
+                setTimeout(() => {
+                    loadPDF(currentPDF);  // Reload the PDF after the delay
+                    pdfLoaded = true;  // Mark PDF as loaded
+                }, 500);  // Adjust the delay time (500ms) as needed
+            }
+        })
+        .catch(error => console.error('Error loading translations:', error));
+}
+
+// Event listeners for language change
+document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
+document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
+
+// Set initial language to English
+setLanguage('en');
+
+// Initial load of the PDF (only if it's not already loaded)
+if (!pdfLoaded) {
+    loadPDF(currentPDF);
+    pdfLoaded = true;  // Mark PDF as loaded
+}
