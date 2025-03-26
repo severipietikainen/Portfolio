@@ -1,5 +1,4 @@
 function setLanguage(lang) {
-
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
@@ -10,37 +9,44 @@ function setLanguage(lang) {
                     element.textContent = translations[lang][key];
                 }
             });
+
+            // Update PDF file path
+            const pdfPath = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
+            document.getElementById("resumeDownload").href = pdfPath;
+
+            // Reload PDF Viewer
+            loadPDF(pdfPath);
         });
-
- 
-    const pdfPaths = {
-        en: "assets/documents/CV_enf.pdf",
-        fi: "assets/documents/CV_fi.pdf"
-    };
-
-    loadPDF(pdfPaths[lang] || pdfPaths["en"]); 
-    document.getElementById("resumeDownload").href = pdfPaths[lang] || pdfPaths["en"];
 }
 
-
-function loadPDF(pdfUrl) {
-    const canvas = document.getElementById("pdf-canvas");
-    if (!canvas) return;
-
-    pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+// Function to load the PDF
+function loadPDF(url) {
+    pdfjsLib.getDocument(url).promise.then(function (pdf) {
         pdf.getPage(1).then(function (page) {
-            const context = canvas.getContext("2d");
-            const scale = 2.5; 
+            const canvas = document.getElementById('pdf-canvas');
+            const context = canvas.getContext('2d');
+
+            const scale = 2.5;
             const viewport = page.getViewport({ scale: scale });
 
             canvas.width = viewport.width;
             canvas.height = viewport.height;
 
-            page.render({ canvasContext: context, viewport: viewport });
+            // Fix upside-down issue
+            context.save(); // Save the original context state
+            context.translate(0, canvas.height); // Move to bottom-left corner
+            context.scale(1, -1); // Flip vertically
+
+            // Render the page
+            page.render({ canvasContext: context, viewport: viewport }).promise.then(() => {
+                context.restore(); // Restore context after rendering
+            });
         });
     });
 }
 
+// Initialize with English PDF
+loadPDF('assets/documents/CV_enf.pdf');
 
 document.addEventListener("DOMContentLoaded", () => {
     setLanguage('en');
