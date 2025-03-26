@@ -22,7 +22,9 @@
         "toiletApp": "Interactive web application for finding the nearest toilet.",
         "paperDogGame": "A simulation game that lets you guide a paper dog on a hand-drawn adventure.",
         "porfoliodesc":"This portfolio website showcases my projects, skills, and experience as a developer.",
-        "portfolio":"Portfolio Website"
+        "portfolio":"Portfolio Website",
+        "experience": "Experience",
+        "resume":"Resume"
     },
     "fi": {
         "home": "Etusivu",
@@ -47,6 +49,8 @@
         "toiletApp": "Interaktiivinen verkkosovellus lähimmän wc:n löytämiseen.",
         "paperDogGame": "Unity C#-projekti. 2D rampage peli mobiilille, jossa pelaaja yrittää kontrolloida koiria saavuttaakseen eniten pisteitä eri kartoissa.",
         "porfoliodesc": "Tämä portfoliosivusto esittelee projektini, taitoni ja kokemukseni ohjelmistokehittäjänä.",
-        "portfolio":"Portfoliosivu"
+        "portfolio":"Portfoliosivu",
+        "experience": "Työkokemus",
+        "resume":"CV"
     }
 }
