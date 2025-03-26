@@ -63,10 +63,10 @@ function setLanguage(lang) {
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Reload the PDF after a short delay
+            // Add a delay to ensure the page fully loads translations before rendering the PDF
             setTimeout(() => {
-                loadPDF(currentPDF);  // Reload the PDF
-            }, 500);  // Adjust the delay time (500ms) as needed
+                loadPDF(currentPDF);  // Reload the PDF after the delay
+            }, 1000);  // Increase the delay time (1000ms or 1 second) as needed for proper rendering
         })
         .catch(error => console.error('Error loading translations:', error));
 }
@@ -78,5 +78,5 @@ document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('clic
 // Set initial language to English
 setLanguage('en');
 
-// Initial load of the PDF (only if it's not already loaded)
+// Initial load of the PDF
 loadPDF(currentPDF);
