@@ -35,8 +35,9 @@ function loadPDF(url) {
     pdfjsLib.getDocument(url).promise
         .then(pdf => {
             const numPages = pdf.numPages;
+            let currentPage = 1;
 
-            // Render a single page at a time
+            // Function to render a single page
             const renderPage = (pageNumber) => {
                 pdf.getPage(pageNumber).then(page => {
                     const scale = 2.5;
@@ -65,6 +66,12 @@ function loadPDF(url) {
                         if (rotationAngle === 90 || rotationAngle === 270) {
                             pdfContext.restore(); 
                         }
+
+                        // After this page is rendered, move to the next one
+                        currentPage++;
+                        if (currentPage <= numPages) {
+                            setTimeout(() => renderPage(currentPage), 50); // Delay for a smooth render transition
+                        }
                     }).catch(error => {
                         console.error("Error rendering page", error);
                     });
@@ -73,7 +80,7 @@ function loadPDF(url) {
                 });
             };
 
-            // Render only the first page or the current page
+            // Start rendering the first page
             renderPage(1);
         })
         .catch(error => {
