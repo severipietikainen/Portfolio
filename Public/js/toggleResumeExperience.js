@@ -30,7 +30,10 @@ experienceButton.addEventListener('click', function () {
 
 // Function to load and render the PDF
 function loadPDF(url) {
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);  // Clear the canvas before rendering
+    // Ensure the canvas is completely cleared
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+    pdfCanvas.width = pdfCanvas.width; // Reset the canvas width/height
+
     pdfjsLib.getDocument(url).promise
         .then(pdf => {
             // Get the number of pages in the PDF
@@ -40,7 +43,7 @@ function loadPDF(url) {
                     const scale = 2.5;
                     const viewport = page.getViewport({ scale: scale });
 
-                    // Ensure canvas matches the page size
+                    // Set the canvas width and height according to the page size
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
