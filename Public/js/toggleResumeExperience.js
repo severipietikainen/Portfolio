@@ -66,7 +66,11 @@ function loadPDF(url) {
                         if (rotationAngle === 90 || rotationAngle === 270) {
                             pdfContext.restore(); // Restore canvas state after rotation
                         }
+                    }).catch(error => {
+                        console.error("Error rendering page", error);
                     });
+                }).catch(error => {
+                    console.error("Error getting page", error);
                 });
             };
 
@@ -75,7 +79,9 @@ function loadPDF(url) {
                 renderPage(i);
             }
         })
-        .catch(error => console.error("Error loading PDF:", error));
+        .catch(error => {
+            console.error("Error loading PDF:", error);
+        });
 }
 
 // Set the language and update translations and PDF URL
