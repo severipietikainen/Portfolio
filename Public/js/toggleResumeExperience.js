@@ -78,10 +78,8 @@ function setLanguage(lang) {
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Add a delay to ensure the page fully loads translations before rendering the PDF
-            setTimeout(() => {
-                loadPDF(currentPDF);  // Reload the PDF after the delay
-            }, 1000);  // Adjust the delay time (1000ms or 1 second) as needed for proper rendering
+            // Immediately reload the PDF after updating translations and URL
+            loadPDF(currentPDF);
         })
         .catch(error => console.error('Error loading translations:', error));
 }
