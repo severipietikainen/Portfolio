@@ -33,13 +33,11 @@ function loadPDF(url) {
     // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
-    // Reset the canvas size to ensure it gets re-rendered correctly
-    pdfCanvas.width = pdfCanvas.width; // Reset canvas width
-    pdfCanvas.height = pdfCanvas.height; // Reset canvas height
-
     pdfjsLib.getDocument(url).promise
         .then(pdf => {
             const numPages = pdf.numPages;
+
+            // Function to render a page
             const renderPage = (pageNumber) => {
                 pdf.getPage(pageNumber).then(page => {
                     const scale = 2.5;
@@ -49,10 +47,30 @@ function loadPDF(url) {
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
-                    return page.render({ canvasContext: pdfContext, viewport: viewport }).promise;
+                    // Get the rotation of the page and adjust for it
+                    const rotate = page.getRotation();
+                    const rotationAngle = rotate || 0; // Handle rotation
+
+                    // If the page is rotated, adjust the rendering context
+                    if (rotationAngle === 90 || rotationAngle === 270) {
+                        pdfContext.save();
+                        pdfContext.translate(viewport.width / 2, viewport.height / 2);
+                        pdfContext.rotate(rotationAngle * Math.PI / 180);
+                        pdfContext.translate(-viewport.width / 2, -viewport.height / 2);
+                    }
+
+                    page.render({
+                        canvasContext: pdfContext,
+                        viewport: viewport
+                    }).promise.then(() => {
+                        if (rotationAngle === 90 || rotationAngle === 270) {
+                            pdfContext.restore(); // Restore canvas state after rotation
+                        }
+                    });
                 });
             };
 
+            // Render each page
             for (let i = 1; i <= numPages; i++) {
                 renderPage(i);
             }
@@ -64,10 +82,6 @@ function loadPDF(url) {
 function setLanguage(lang) {
     // Clear the canvas immediately before fetching translations
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
-
-    // Reset the canvas size
-    pdfCanvas.width = pdfCanvas.width; // Reset canvas width
-    pdfCanvas.height = pdfCanvas.height; // Reset canvas height
 
     fetch('translations.json')
         .then(response => response.json())
