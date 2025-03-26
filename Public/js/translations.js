@@ -22,6 +22,7 @@ function loadPDF(url) {
     // Clear the previous PDF from the canvas before reloading
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
+    // Load the PDF document again with the appropriate URL
     pdfjsLib.getDocument(url).promise
         .then(pdf => pdf.getPage(1))
         .then(page => {
@@ -37,10 +38,19 @@ function loadPDF(url) {
 }
 
 function setLanguage(lang) {
+    // Prevent PDF from loading if the canvas is already busy
+    if (pdfCanvas.width === 0 || pdfCanvas.height === 0) {
+        console.log('Canvas is not initialized, skipping language change.');
+        return;
+    }
+
+    // Clear the canvas to avoid rendering the old PDF
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+
+    // Fetch the translation data
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
-            // Update translated content
             document.querySelectorAll("[data-i18n]").forEach(element => {
                 const key = element.getAttribute("data-i18n");
                 if (data[lang] && data[lang][key]) {
@@ -48,16 +58,16 @@ function setLanguage(lang) {
                 }
             });
 
-            // Update the current PDF path based on the selected language
+            // Update the PDF based on the selected language
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Add a longer delay before reloading the PDF to ensure content updates are finished
+            // Ensure PDF is only loaded when content is ready (with a short delay)
             setTimeout(() => {
                 if (resumeVisible) {
-                    loadPDF(currentPDF);  // Reload the PDF for the selected language
+                    loadPDF(currentPDF); // Reload the PDF for the selected language
                 }
-            }, 1000); // Delay by 1000ms (1 second)
+            }, 100); // Adjusted delay to ensure content has been rendered
         });
 }
 
