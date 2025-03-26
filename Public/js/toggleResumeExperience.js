@@ -30,13 +30,12 @@ experienceButton.addEventListener('click', function () {
 
 // Function to load and render the PDF
 function loadPDF(url) {
-    // Ensure the canvas is completely cleared
+    // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
     pdfCanvas.width = pdfCanvas.width; // Reset the canvas width/height
 
     pdfjsLib.getDocument(url).promise
         .then(pdf => {
-            // Get the number of pages in the PDF
             const numPages = pdf.numPages;
             const renderPage = (pageNumber) => {
                 pdf.getPage(pageNumber).then(page => {
@@ -47,12 +46,10 @@ function loadPDF(url) {
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
-                    // Render the page into the canvas context
                     return page.render({ canvasContext: pdfContext, viewport: viewport }).promise;
                 });
             };
 
-            // Render all pages
             for (let i = 1; i <= numPages; i++) {
                 renderPage(i);
             }
@@ -62,7 +59,10 @@ function loadPDF(url) {
 
 // Set the language and update translations and PDF URL
 function setLanguage(lang) {
-    // Fetch translations and update the text
+    // Clear the canvas immediately before fetching translations
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+    pdfCanvas.width = pdfCanvas.width; // Reset the canvas width/height
+
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
