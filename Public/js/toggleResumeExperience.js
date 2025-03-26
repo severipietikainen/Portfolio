@@ -29,6 +29,7 @@ experienceButton.addEventListener('click', function () {
 });
 
 // Function to load and render the PDF
+// Function to load and render the PDF
 function loadPDF(url) {
     // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
@@ -47,9 +48,8 @@ function loadPDF(url) {
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
-                    // Get the rotation of the page and adjust for it
-                    const rotate = page.getRotation();
-                    const rotationAngle = rotate || 0; // Handle rotation
+                    // Get the rotation from the viewport object (not the page)
+                    const rotationAngle = viewport.rotation || 0; // Handle rotation
 
                     // If the page is rotated, adjust the rendering context
                     if (rotationAngle === 90 || rotationAngle === 270) {
