@@ -38,19 +38,14 @@ function loadPDF(url) {
 }
 
 function setLanguage(lang) {
-    // Prevent PDF from loading if the canvas is already busy
-    if (pdfCanvas.width === 0 || pdfCanvas.height === 0) {
-        console.log('Canvas is not initialized, skipping language change.');
-        return;
-    }
-
-    // Clear the canvas to avoid rendering the old PDF
+    // Clear the canvas immediately
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
     // Fetch the translation data
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
+            // Apply translations
             document.querySelectorAll("[data-i18n]").forEach(element => {
                 const key = element.getAttribute("data-i18n");
                 if (data[lang] && data[lang][key]) {
@@ -62,12 +57,12 @@ function setLanguage(lang) {
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Ensure PDF is only loaded when content is ready (with a short delay)
+            // Wait for the page content to fully update before reloading the PDF
             setTimeout(() => {
                 if (resumeVisible) {
-                    loadPDF(currentPDF); // Reload the PDF for the selected language
+                    loadPDF(currentPDF); // Reload the PDF only if resume is visible
                 }
-            }, 100); // Adjusted delay to ensure content has been rendered
+            }, 100); // Delay to ensure content is updated before loading PDF
         });
 }
 
