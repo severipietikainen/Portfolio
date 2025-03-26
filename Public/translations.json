@@ -24,7 +24,8 @@
         "porfoliodesc":"This portfolio website showcases my projects, skills, and experience as a developer.",
         "portfolio":"Portfolio Website",
         "experience": "Experience",
-        "resume":"Resume"
+        "resume":"Resume",
+        "download":"Download"
     },
     "fi": {
         "home": "Etusivu",
@@ -51,6 +52,7 @@
         "porfoliodesc": "Tämä portfoliosivusto esittelee projektini, taitoni ja kokemukseni ohjelmistokehittäjänä.",
         "portfolio":"Portfoliosivu",
         "experience": "Työkokemus",
-        "resume":"CV"
+        "resume":"CV",
+        "download":"Lataa"
     }
 }
