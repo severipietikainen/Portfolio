@@ -7,7 +7,6 @@ const pdfContext = pdfCanvas.getContext('2d');
 
 // Initial PDF URL
 let currentPDF = 'assets/documents/CV_enf.pdf';
-let pdfLoaded = false;  // Track PDF loading status
 
 // Function to toggle between Resume and Experience sections
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
@@ -64,14 +63,10 @@ function setLanguage(lang) {
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Only reload PDF if it's not already loaded
-            if (!pdfLoaded) {
-                // Add a delay before reloading the PDF to ensure proper rendering
-                setTimeout(() => {
-                    loadPDF(currentPDF);  // Reload the PDF after the delay
-                    pdfLoaded = true;  // Mark PDF as loaded
-                }, 500);  // Adjust the delay time (500ms) as needed
-            }
+            // Reload the PDF after a short delay
+            setTimeout(() => {
+                loadPDF(currentPDF);  // Reload the PDF
+            }, 500);  // Adjust the delay time (500ms) as needed
         })
         .catch(error => console.error('Error loading translations:', error));
 }
@@ -84,7 +79,4 @@ document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('clic
 setLanguage('en');
 
 // Initial load of the PDF (only if it's not already loaded)
-if (!pdfLoaded) {
-    loadPDF(currentPDF);
-    pdfLoaded = true;  // Mark PDF as loaded
-}
+loadPDF(currentPDF);
