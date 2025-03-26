@@ -5,8 +5,14 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
+// Define PDF paths for English and Finnish
+const pdfPaths = {
+    en: 'assets/documents/CV_enf.pdf',
+    fi: 'assets/documents/CV_fi.pdf'
+};
+
 // Set the initial PDF URL to English
-let currentPDF = 'assets/documents/CV_enf.pdf';
+let currentPDF = pdfPaths.en;
 
 // Function to toggle between Resume and Experience sections
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
@@ -29,26 +35,28 @@ experienceButton.addEventListener('click', function () {
 });
 
 // Function to load and render the PDF on the canvas
-function loadPDF(language) {
-    const url = pdfPaths[language] || pdfPaths["en"]; // Default to English if not found
-    const pdfCanvas = document.getElementById("pdf-canvas");
-    const pdfViewer = document.getElementById("pdf-viewer");
+function loadPDF(url) {
+    // Clear the canvas before loading the PDF
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
     pdfjsLib.getDocument(url).promise.then(pdf => {
         pdf.getPage(1).then(page => {
-            const context = pdfCanvas.getContext("2d");
             const viewport = page.getViewport({ scale: 1.2 });
 
             pdfCanvas.width = viewport.width;
             pdfCanvas.height = viewport.height;
 
             const renderContext = {
-                canvasContext: context,
+                canvasContext: pdfContext,
                 viewport: viewport
             };
 
             page.render(renderContext);
+        }).catch(error => {
+            console.error("Error rendering PDF page:", error);
         });
+    }).catch(error => {
+        console.error("Error loading PDF:", error);
     });
 }
 
@@ -66,8 +74,8 @@ function setLanguage(lang) {
                 }
             });
 
-            // Set the English or Finnish PDF URL
-            currentPDF = lang === 'fi' ? 'assets/documents/CV_enf.pdf' : 'assets/documents/CV_enf.pdf';
+            // Set the PDF URL based on the selected language
+            currentPDF = pdfPaths[lang] || pdfPaths.en;  // Default to English if the language is not found
 
             // Reload the PDF after updating the URL
             loadPDF(currentPDF);
