@@ -29,41 +29,27 @@ experienceButton.addEventListener('click', function () {
 });
 
 // Function to load and render the PDF on the canvas
-function loadPDF(url) {
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+function loadPDF(language) {
+    const url = pdfPaths[language] || pdfPaths["en"]; // Default to English if not found
+    const pdfCanvas = document.getElementById("pdf-canvas");
+    const pdfViewer = document.getElementById("pdf-viewer");
 
-    pdfjsLib.getDocument(url).promise
-        .then(pdf => {
-            const numPages = pdf.numPages;
-            let currentPage = 1;
+    pdfjsLib.getDocument(url).promise.then(pdf => {
+        pdf.getPage(1).then(page => {
+            const context = pdfCanvas.getContext("2d");
+            const viewport = page.getViewport({ scale: 1.2 });
 
-            // Render each page
-            const renderPage = (pageNumber) => {
-                pdf.getPage(pageNumber).then(page => {
-                    const scale = 2.5;
-                    const viewport = page.getViewport({ scale: scale });
+            pdfCanvas.width = viewport.width;
+            pdfCanvas.height = viewport.height;
 
-                    // Set canvas size based on page size
-                    pdfCanvas.width = viewport.width;
-                    pdfCanvas.height = viewport.height;
-
-                    // Render the page
-                    page.render({
-                        canvasContext: pdfContext,
-                        viewport: viewport
-                    }).promise.then(() => {
-                        // Move to next page
-                        currentPage++;
-                        if (currentPage <= numPages) {
-                            setTimeout(() => renderPage(currentPage), 50); // Small delay between page renders
-                        }
-                    }).catch(error => console.error("Error rendering page", error));
-                }).catch(error => console.error("Error getting page", error));
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
             };
 
-            renderPage(1); // Start rendering the first page
-        })
-        .catch(error => console.error("Error loading PDF:", error));
+            page.render(renderContext);
+        });
+    });
 }
 
 // Function to set language and update the PDF URL
