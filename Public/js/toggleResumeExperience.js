@@ -5,10 +5,9 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
-// Default PDF path (English)
 let currentPDF = 'assets/documents/CV_enf.pdf';
+let resumeVisible = true; 
 
-// Function to switch content and update button styles
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
     activeButton.classList.remove('bg-gray-600', 'text-gray-300');
     activeButton.classList.add('bg-gray-900', 'text-white');
@@ -17,9 +16,16 @@ function toggleContent(activeButton, inactiveButton, activeContent, inactiveCont
 
     activeContent.classList.remove('hidden');
     inactiveContent.classList.add('hidden');
+
+    if (activeContent === resumeContent) {
+        resumeVisible = true;
+        loadPDF(currentPDF); 
+    } else {
+        resumeVisible = false;
+    }
 }
 
-// Event listeners for the buttons
+
 resumeButton.addEventListener('click', function () {
     toggleContent(resumeButton, experienceButton, resumeContent, experienceContent);
 });
@@ -28,9 +34,9 @@ experienceButton.addEventListener('click', function () {
     toggleContent(experienceButton, resumeButton, experienceContent, resumeContent);
 });
 
-// Function to load and render the PDF
+
 function loadPDF(url) {
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height); // Clear previous content
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height); 
 
     pdfjsLib.getDocument(url).promise
         .then(pdf => pdf.getPage(1))
@@ -46,10 +52,9 @@ function loadPDF(url) {
         .catch(error => console.error("Error loading PDF:", error));
 }
 
-// Initialize with the default PDF
+
 loadPDF(currentPDF);
 
-// Modify `setLanguage` function to update PDF
 function setLanguage(lang) {
     fetch('translations.json')
         .then(response => response.json())
@@ -61,13 +66,17 @@ function setLanguage(lang) {
                 }
             });
 
-            // Update the PDF file when language changes
+
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
-            document.querySelector("#resumeContent a").href = currentPDF; // Update download link
-            loadPDF(currentPDF); // Reload the PDF
+            document.querySelector("#resumeContent a").href = currentPDF;
+
+
+            if (resumeVisible) {
+                loadPDF(currentPDF);
+            }
         });
 }
 
-// Event listeners for language buttons
+
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
 document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
