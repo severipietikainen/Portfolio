@@ -36,7 +36,7 @@ function loadPDF(url) {
         .then(pdf => {
             const numPages = pdf.numPages;
 
-            // Function to render a page
+            // Render a single page at a time
             const renderPage = (pageNumber) => {
                 pdf.getPage(pageNumber).then(page => {
                     const scale = 2.5;
@@ -61,13 +61,9 @@ function loadPDF(url) {
                         canvasContext: pdfContext,
                         viewport: viewport
                     }).promise.then(() => {
+                        // If the page was rotated, restore the context after rendering
                         if (rotationAngle === 90 || rotationAngle === 270) {
-                            pdfContext.restore(); // Restore canvas state after rotation
-                        }
-
-                        // After this page is rendered, move to the next one
-                        if (pageNumber < numPages) {
-                            renderPage(pageNumber + 1); // Render the next page
+                            pdfContext.restore(); 
                         }
                     }).catch(error => {
                         console.error("Error rendering page", error);
@@ -77,7 +73,7 @@ function loadPDF(url) {
                 });
             };
 
-            // Start rendering the first page
+            // Render only the first page or the current page
             renderPage(1);
         })
         .catch(error => {
