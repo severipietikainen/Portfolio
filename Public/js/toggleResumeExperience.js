@@ -14,6 +14,9 @@ const pdfPaths = {
 // Set the initial PDF URL to English
 let currentPDF = pdfPaths.en;
 
+// Track if a PDF render is in progress
+let isRendering = false;
+
 // Function to toggle between Resume and Experience sections
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
     activeButton.classList.remove('bg-gray-600', 'text-gray-300');
@@ -36,7 +39,12 @@ experienceButton.addEventListener('click', function () {
 
 // Function to load and render the PDF on the canvas
 function loadPDF(url) {
-    // Clear the canvas before loading the PDF
+    // Avoid starting a new render if one is already in progress
+    if (isRendering) return;
+
+    isRendering = true; // Set the flag to indicate rendering is in progress
+
+    // Clear the canvas before rendering the new PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
     pdfjsLib.getDocument(url).promise.then(pdf => {
@@ -51,12 +59,20 @@ function loadPDF(url) {
                 viewport: viewport
             };
 
-            page.render(renderContext);
+            page.render(renderContext).promise.then(() => {
+                // Once the render operation is completed, reset the flag
+                isRendering = false;
+            }).catch(error => {
+                console.error("Error rendering PDF page:", error);
+                isRendering = false; // Reset the flag in case of an error
+            });
         }).catch(error => {
-            console.error("Error rendering PDF page:", error);
+            console.error("Error loading PDF page:", error);
+            isRendering = false; // Reset the flag in case of an error
         });
     }).catch(error => {
         console.error("Error loading PDF:", error);
+        isRendering = false; // Reset the flag in case of an error
     });
 }
 
