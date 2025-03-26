@@ -32,7 +32,10 @@ experienceButton.addEventListener('click', function () {
 function loadPDF(url) {
     // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
-    pdfCanvas.width = pdfCanvas.width; // Reset the canvas width/height
+
+    // Reset the canvas size to ensure it gets re-rendered correctly
+    pdfCanvas.width = pdfCanvas.width; // Reset canvas width
+    pdfCanvas.height = pdfCanvas.height; // Reset canvas height
 
     pdfjsLib.getDocument(url).promise
         .then(pdf => {
@@ -61,7 +64,10 @@ function loadPDF(url) {
 function setLanguage(lang) {
     // Clear the canvas immediately before fetching translations
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
-    pdfCanvas.width = pdfCanvas.width; // Reset the canvas width/height
+
+    // Reset the canvas size
+    pdfCanvas.width = pdfCanvas.width; // Reset canvas width
+    pdfCanvas.height = pdfCanvas.height; // Reset canvas height
 
     fetch('translations.json')
         .then(response => response.json())
