@@ -32,17 +32,27 @@ experienceButton.addEventListener('click', function () {
 function loadPDF(url) {
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);  // Clear the canvas before rendering
     pdfjsLib.getDocument(url).promise
-        .then(pdf => pdf.getPage(1))
-        .then(page => {
-            const scale = 2.5;  // You can adjust this scale for a better fit
-            const viewport = page.getViewport({ scale: scale });
+        .then(pdf => {
+            // Get the number of pages in the PDF
+            const numPages = pdf.numPages;
+            const renderPage = (pageNumber) => {
+                pdf.getPage(pageNumber).then(page => {
+                    const scale = 2.5;
+                    const viewport = page.getViewport({ scale: scale });
 
-            // Ensure canvas matches the page size
-            pdfCanvas.width = viewport.width;
-            pdfCanvas.height = viewport.height;
+                    // Ensure canvas matches the page size
+                    pdfCanvas.width = viewport.width;
+                    pdfCanvas.height = viewport.height;
 
-            // Render the page into the canvas context
-            return page.render({ canvasContext: pdfContext, viewport: viewport }).promise;
+                    // Render the page into the canvas context
+                    return page.render({ canvasContext: pdfContext, viewport: viewport }).promise;
+                });
+            };
+
+            // Render all pages
+            for (let i = 1; i <= numPages; i++) {
+                renderPage(i);
+            }
         })
         .catch(error => console.error("Error loading PDF:", error));
 }
