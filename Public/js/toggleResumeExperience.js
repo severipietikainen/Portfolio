@@ -46,8 +46,8 @@ function loadPDF(url) {
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
-                    // Get the rotation from the viewport object (not the page)
-                    const rotationAngle = viewport.rotation || 0; // Handle rotation
+                    // Get the rotation from the page (not the viewport)
+                    const rotationAngle = page.rotation || 0; // Handle rotation
 
                     // If the page is rotated, adjust the rendering context
                     if (rotationAngle === 90 || rotationAngle === 270) {
@@ -65,7 +65,7 @@ function loadPDF(url) {
                             pdfContext.restore(); // Restore canvas state after rotation
                         }
 
-                        // After rendering this page, render the next one
+                        // After this page is rendered, move to the next one
                         if (pageNumber < numPages) {
                             renderPage(pageNumber + 1); // Render the next page
                         }
@@ -77,14 +77,13 @@ function loadPDF(url) {
                 });
             };
 
-            // Start rendering from the first page
+            // Start rendering the first page
             renderPage(1);
         })
         .catch(error => {
             console.error("Error loading PDF:", error);
         });
 }
-
 // Set the language and update translations and PDF URL
 function setLanguage(lang) {
     // Clear the canvas immediately before fetching translations
