@@ -5,7 +5,7 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
-// Initial PDF URL
+// Set the initial PDF URL to English
 let currentPDF = 'assets/documents/CV_enf.pdf';
 
 // Function to toggle between Resume and Experience sections
@@ -28,8 +28,8 @@ experienceButton.addEventListener('click', function () {
     toggleContent(experienceButton, resumeButton, experienceContent, resumeContent);
 });
 
+// Function to load and render the PDF on the canvas
 function loadPDF(url) {
-    // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
     pdfjsLib.getDocument(url).promise
@@ -37,65 +37,42 @@ function loadPDF(url) {
             const numPages = pdf.numPages;
             let currentPage = 1;
 
-            // Function to render a single page
+            // Render each page
             const renderPage = (pageNumber) => {
                 pdf.getPage(pageNumber).then(page => {
                     const scale = 2.5;
                     const viewport = page.getViewport({ scale: scale });
 
-                    // Set the canvas width and height according to the page size
+                    // Set canvas size based on page size
                     pdfCanvas.width = viewport.width;
                     pdfCanvas.height = viewport.height;
 
-                    // Get the rotation from the page (not the viewport)
-                    const rotationAngle = page.rotation || 0; // Handle rotation
-
-                    // If the page is rotated, adjust the rendering context
-                    if (rotationAngle === 90 || rotationAngle === 270) {
-                        pdfContext.save();
-                        pdfContext.translate(viewport.width / 2, viewport.height / 2);
-                        pdfContext.rotate(rotationAngle * Math.PI / 180);
-                        pdfContext.translate(-viewport.width / 2, -viewport.height / 2);
-                    }
-
+                    // Render the page
                     page.render({
                         canvasContext: pdfContext,
                         viewport: viewport
                     }).promise.then(() => {
-                        // If the page was rotated, restore the context after rendering
-                        if (rotationAngle === 90 || rotationAngle === 270) {
-                            pdfContext.restore(); 
-                        }
-
-                        // After this page is rendered, move to the next one
+                        // Move to next page
                         currentPage++;
                         if (currentPage <= numPages) {
-                            setTimeout(() => renderPage(currentPage), 50); // Delay for a smooth render transition
+                            setTimeout(() => renderPage(currentPage), 50); // Small delay between page renders
                         }
-                    }).catch(error => {
-                        console.error("Error rendering page", error);
-                    });
-                }).catch(error => {
-                    console.error("Error getting page", error);
-                });
+                    }).catch(error => console.error("Error rendering page", error));
+                }).catch(error => console.error("Error getting page", error));
             };
 
-            // Start rendering the first page
-            renderPage(1);
+            renderPage(1); // Start rendering the first page
         })
-        .catch(error => {
-            console.error("Error loading PDF:", error);
-        });
+        .catch(error => console.error("Error loading PDF:", error));
 }
-// Set the language and update translations and PDF URL
-function setLanguage(lang) {
-    // Clear the canvas immediately before fetching translations
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 
+// Function to set language and update the PDF URL
+function setLanguage(lang) {
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
             const translations = data;
+
             document.querySelectorAll("[data-i18n]").forEach(element => {
                 const key = element.getAttribute("data-i18n");
                 if (translations[lang] && translations[lang][key]) {
@@ -103,22 +80,21 @@ function setLanguage(lang) {
                 }
             });
 
-            // Set the PDF URL based on the selected language
-            currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
-            document.querySelector("#resumeContent a").href = currentPDF;
+            // Set the English or Finnish PDF URL
+            currentPDF = lang === 'fi' ? 'assets/documents/CV_enf.pdf' : 'assets/documents/CV_enf.pdf';
 
-            // Immediately reload the PDF after updating translations and URL
+            // Reload the PDF after updating the URL
             loadPDF(currentPDF);
         })
         .catch(error => console.error('Error loading translations:', error));
 }
 
-// Event listeners for language change
+// Language toggle buttons
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
 document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
 
-// Set initial language to English
+// Set initial language to English and load the PDF
 setLanguage('en');
 
-// Initial load of the PDF
+// Initial PDF load
 loadPDF(currentPDF);
