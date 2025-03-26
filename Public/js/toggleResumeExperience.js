@@ -5,9 +5,8 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
-// Initial PDF URL and current language
+// Initial PDF URL
 let currentPDF = 'assets/documents/CV_enf.pdf';
-let currentLanguage = 'en'; // Set to the initial language
 
 // Function to toggle between Resume and Experience sections
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
@@ -63,9 +62,6 @@ function loadPDF(url) {
 
 // Set the language and update translations and PDF URL
 function setLanguage(lang) {
-    // Check if the selected language is already the current language
-    if (lang === currentLanguage) return;  // Skip if the language is already set
-
     // Fetch translations and update the text
     fetch('translations.json')
         .then(response => response.json())
@@ -86,9 +82,6 @@ function setLanguage(lang) {
             setTimeout(() => {
                 loadPDF(currentPDF);  // Reload the PDF after the delay
             }, 1000);  // Adjust the delay time (1000ms or 1 second) as needed for proper rendering
-
-            // Update the current language
-            currentLanguage = lang;
         })
         .catch(error => console.error('Error loading translations:', error));
 }
