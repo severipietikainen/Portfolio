@@ -5,8 +5,9 @@ const experienceContent = document.getElementById('experienceContent');
 const pdfCanvas = document.getElementById('pdf-canvas');
 const pdfContext = pdfCanvas.getContext('2d');
 
+
 let currentPDF = 'assets/documents/CV_enf.pdf';
-let resumeVisible = true; 
+
 
 function toggleContent(activeButton, inactiveButton, activeContent, inactiveContent) {
     activeButton.classList.remove('bg-gray-600', 'text-gray-300');
@@ -16,13 +17,6 @@ function toggleContent(activeButton, inactiveButton, activeContent, inactiveCont
 
     activeContent.classList.remove('hidden');
     inactiveContent.classList.add('hidden');
-
-    if (activeContent === resumeContent) {
-        resumeVisible = true;
-        loadPDF(currentPDF); 
-    } else {
-        resumeVisible = false;
-    }
 }
 
 
@@ -37,7 +31,6 @@ experienceButton.addEventListener('click', function () {
 
 function loadPDF(url) {
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height); 
-
     pdfjsLib.getDocument(url).promise
         .then(pdf => pdf.getPage(1))
         .then(page => {
@@ -55,6 +48,7 @@ function loadPDF(url) {
 
 loadPDF(currentPDF);
 
+
 function setLanguage(lang) {
     fetch('translations.json')
         .then(response => response.json())
@@ -69,14 +63,9 @@ function setLanguage(lang) {
 
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
-
-
-            if (resumeVisible) {
-                loadPDF(currentPDF);
-            }
+            loadPDF(currentPDF); 
         });
 }
-
 
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
 document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
