@@ -30,16 +30,18 @@ experienceButton.addEventListener('click', function () {
 
 // Function to load and render the PDF
 function loadPDF(url) {
-    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+    pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);  // Clear the canvas before rendering
     pdfjsLib.getDocument(url).promise
         .then(pdf => pdf.getPage(1))
         .then(page => {
-            const scale = 2.5;
+            const scale = 2.5;  // You can adjust this scale for a better fit
             const viewport = page.getViewport({ scale: scale });
 
+            // Ensure canvas matches the page size
             pdfCanvas.width = viewport.width;
             pdfCanvas.height = viewport.height;
 
+            // Render the page into the canvas context
             return page.render({ canvasContext: pdfContext, viewport: viewport }).promise;
         })
         .catch(error => console.error("Error loading PDF:", error));
@@ -66,7 +68,7 @@ function setLanguage(lang) {
             // Add a delay to ensure the page fully loads translations before rendering the PDF
             setTimeout(() => {
                 loadPDF(currentPDF);  // Reload the PDF after the delay
-            }, 1000);  // Increase the delay time (1000ms or 1 second) as needed for proper rendering
+            }, 1000);  // Adjust the delay time (1000ms or 1 second) as needed for proper rendering
         })
         .catch(error => console.error('Error loading translations:', error));
 }
