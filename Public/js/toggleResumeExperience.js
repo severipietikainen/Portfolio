@@ -28,8 +28,6 @@ experienceButton.addEventListener('click', function () {
     toggleContent(experienceButton, resumeButton, experienceContent, resumeContent);
 });
 
-// Function to load and render the PDF
-// Function to load and render the PDF
 function loadPDF(url) {
     // Clear the canvas immediately before loading the PDF
     pdfContext.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
@@ -66,6 +64,11 @@ function loadPDF(url) {
                         if (rotationAngle === 90 || rotationAngle === 270) {
                             pdfContext.restore(); // Restore canvas state after rotation
                         }
+
+                        // After rendering this page, render the next one
+                        if (pageNumber < numPages) {
+                            renderPage(pageNumber + 1); // Render the next page
+                        }
                     }).catch(error => {
                         console.error("Error rendering page", error);
                     });
@@ -74,10 +77,8 @@ function loadPDF(url) {
                 });
             };
 
-            // Render each page
-            for (let i = 1; i <= numPages; i++) {
-                renderPage(i);
-            }
+            // Start rendering from the first page
+            renderPage(1);
         })
         .catch(error => {
             console.error("Error loading PDF:", error);
