@@ -1,4 +1,5 @@
 function setLanguage(lang) {
+    // Fetch translations and update the text
     fetch('translations.json')
         .then(response => response.json())
         .then(data => {
@@ -10,7 +11,7 @@ function setLanguage(lang) {
                 }
             });
 
-            // Update the PDF based on the selected language
+            // Set the PDF URL based on the selected language
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
@@ -22,9 +23,9 @@ function setLanguage(lang) {
         .catch(error => console.error('Error loading translations:', error));
 }
 
-// Set initial language to English
-setLanguage('en');
-
 // Event listeners for language change
 document.querySelector('[onclick="setLanguage(\'fi\')"]').addEventListener('click', () => setLanguage('fi'));
 document.querySelector('[onclick="setLanguage(\'en\')"]').addEventListener('click', () => setLanguage('en'));
+
+// Set initial language to English
+setLanguage('en');
