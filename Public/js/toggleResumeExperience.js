@@ -59,15 +59,14 @@ function setLanguage(lang) {
                 }
             });
 
+            // Update PDF based on selected language
             currentPDF = lang === 'fi' ? 'assets/documents/CV_fi.pdf' : 'assets/documents/CV_enf.pdf';
             document.querySelector("#resumeContent a").href = currentPDF;
 
-            // Reload the PDF only if the resume section is visible
-            setTimeout(() => {
-                if (resumeVisible) {
-                    loadPDF(currentPDF);
-                }
-            }, 100);  // Delay to ensure content is updated before reloading the PDF
+            // Reload the PDF immediately after the language change
+            if (resumeVisible) {
+                loadPDF(currentPDF);
+            }
         })
         .catch(error => console.error('Error loading translations:', error));
 }
